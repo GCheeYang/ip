@@ -15,9 +15,10 @@ public class Task {
         this.status = !status;
     }
 
+    @Override
     public String toString() {
-        String str = "[" + this.getStatus() + "] " + this.description;
-        return str;
+        return this.description;
     }
+
 }
 
