@@ -40,6 +40,8 @@ public class Tom {
                 addDeadline(input);
             } else if (input.startsWith("event")) {
                 addEvent(input);
+            } else {
+                System.out.println("Sorry, that command is not recognised");
             }
         }
 
@@ -48,29 +50,41 @@ public class Tom {
     }
 
     public static void addToDo(String input) {
-        String description = input.substring(5);
-        Task task = new ToDo(description);
-        tasks.add(task);
-        printTask(task);
+        try {
+            String description = input.substring(5);
+            Task task = new ToDo(description);
+            tasks.add(task);
+            printTask(task);
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Please fill in a description of a todo task");
+        }
     }
 
     public static void addDeadline(String input) {
-        String[] parts = input.substring(9).split("/by");
-        String description = parts[0];
-        String deadline = parts[1];
-        Task task = new Deadlines(description, deadline);
-        tasks.add(task);
-        printTask(task);
+        try {
+            String[] parts = input.substring(9).split("/by");
+            String description = parts[0];
+            String deadline = parts[1];
+            Task task = new Deadlines(description, deadline);
+            tasks.add(task);
+            printTask(task);
+        } catch (Exception e) {
+            System.out.println("Sorry, the deadline format is invalid. Use deadline <desc> /by <time>");
+        }
     }
 
     public static void addEvent(String input) {
-        String[] parts = input.substring(6).split("/from|/to");
-        String description = parts[0];
-        String from = parts[1];
-        String to = parts[2];
-        Task task = new Events(description, from, to);
-        tasks.add(task);
-        printTask(task);
+        try {
+            String[] parts = input.substring(6).split("/from|/to");
+            String description = parts[0];
+            String from = parts[1];
+            String to = parts[2];
+            Task task = new Events(description, from, to);
+            tasks.add(task);
+            printTask(task);
+        } catch (Exception e) {
+            System.out.println("Sorry, the event format is invalid. Use event <desc> /from <start> /to <end>");
+        }
     }
 
     public static void printTask(Task task) {
