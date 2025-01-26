@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Tom {
     private static List<Task> tasks = new ArrayList<>();
-    private static String line = "\n________________________________________________\n";
+    private static String line = "\n_________________________________________________\n";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
