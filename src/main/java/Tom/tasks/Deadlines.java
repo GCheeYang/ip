@@ -1,8 +1,10 @@
+package Tom.tasks;
+
 public class Deadlines extends Task{
     private String deadline;
 
-    public Deadlines (String description, String deadline){
-        super(description);
+    public Deadlines (String description, boolean status, String deadline){
+        super(description, status);
         this.deadline = deadline;
     }
 
