@@ -1,4 +1,5 @@
-import Tom.tasks.*;
+package Tom.tasks;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
