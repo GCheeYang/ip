@@ -10,9 +10,9 @@ public class Tom {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(line + "Hello! I'm Tom\n" + "What Can I do for you?" + line);
-        Data.ensureFileExists();
-        tasks = Data.loadTasks();
+        Ui.welcome();
+        Storage.ensureFileExists();
+        tasks = Storage.loadTasks();
 
         while(true) {
             String input = scanner.nextLine(); //takes in user input
@@ -21,7 +21,7 @@ public class Tom {
             //general commands
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!\n" + line);
-                Data.saveTasks(tasks);
+                Storage.saveTasks(tasks);
                 break;
             } else if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
@@ -59,7 +59,7 @@ public class Tom {
 
     private static void addToDo(String input) {
         try {
-            Task task = Task.parseTask(input);
+            Task task = Parser.parseTask(input);
             tasks.add(task);
             printTask(task);
         } catch (StringIndexOutOfBoundsException e) {
@@ -70,7 +70,7 @@ public class Tom {
     private static void addDeadline(String input) {
         try {
 
-            Task task = Task.parseTask(input);
+            Task task = Parser.parseTask(input);
             tasks.add(task);
             printTask(task);
         } catch (Exception e) {
@@ -80,7 +80,7 @@ public class Tom {
 
     private static void addEvent(String input) {
         try {
-            Task task = Task.parseTask(input);
+            Task task = Parser.parseTask(input);
             tasks.add(task);
             printTask(task);
         } catch (Exception e) {
