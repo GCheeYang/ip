@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 
 public class Tom {
     Path filePath = Paths.get("data", "tom.txt");
-    private static List<Task> tasks;
+    private static ArrayList<Task> tasks;
     private static String line = "\n_________________________________________________\n";
 
     public static void main(String[] args) {
@@ -29,6 +29,12 @@ public class Tom {
                     System.out.println(i + 1 + ". " + tasks.get(i).toString());
                 }
                 // Mark/Unmark commands
+            } else if (input.equals("find")) {
+                for (int i = 0; i < tasks.size(); i++) {
+                    if (tasks.get(i).toString().contains(parts[1])) {
+                        System.out.println(tasks.get(i).toString());
+                    }
+                }
             } else if (input.contains("unmark")) {
                 String itemString = parts[1];
                 int item = Integer.parseInt(itemString) - 1;
