@@ -1,8 +1,14 @@
 package Tom.tasks;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
     private String description;
     private boolean status;
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 
     public Task(String description, boolean status) {
         this.description = description;
@@ -37,13 +43,17 @@ public class Task {
                     System.out.println("Invalid deadline format: " + line);
                     return null;
                 }
-                return new Deadlines(description, isDone, parts[3]);
+                LocalDateTime deadlineDate = LocalDateTime.parse(parts[3], DATE_FORMATTER);
+                return new Deadlines(description, isDone, deadlineDate);
             } else if (type.equals("E ")) {
-                if (parts.length < 4) {
+                if (parts.length < 5) {
                     System.out.println("Invalid event format: " + line);
                     return null;
                 }
-                return new Events(description, isDone, parts[3], parts[4]);
+                LocalDateTime eventFrom = LocalDateTime.parse(parts[3].substring(0, parts[3].length() - 1), DATE_FORMATTER);
+                LocalDateTime eventTo = LocalDateTime.parse(parts[4], DATE_FORMATTER);
+
+                return new Events(description, isDone, eventFrom, eventTo);
             } else {
                 System.out.println("Unknown task type: " + line);
                 return null;
