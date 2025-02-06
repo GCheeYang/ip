@@ -3,9 +3,17 @@ package Tom.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A Parser class to handle user commands
+ */
 public class Parser {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /**
+     * Parser that takes in a string and formats task to tasklist
+     * @param line User input
+     * @return A task to be taken in by taskList
+     */
     public static Task parseTask(String line) {
         String[] parts = line.split("\\| ");
 
