@@ -21,6 +21,7 @@ public class Events extends Task{
         this.to = to;
     }
 
+    @Override
     public String toString() {
         return "[E][" + getStatus() + "] " + super.toString() + "(From:" + from.format(OUTPUT_FORMATTER) + " To:" + to.format(OUTPUT_FORMATTER) + ")";
     }
