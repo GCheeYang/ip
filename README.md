@@ -9,7 +9,7 @@
 
 All you need to do is,
 
-1. download it from here.
+1. download it from [here.](https://github.com/GCheeYang/ip)
 1. double-click it.
 1. add your tasks.
 1. let it manage your tasks for you 😉
