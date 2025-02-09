@@ -3,25 +3,27 @@
 
 DukePro frees your mind of having to remember things you need to do. It's,
 
-text-based
-easy to learn
-FAST SUPER FAST to use
+* text-based
+* easy to learn
+* ~FAST~ _SUPER_ FAST to use
+
 All you need to do is,
 
-download it from here.
-double-click it.
-add your tasks.
-let it manage your tasks for you 😉
+1. download it from here.
+1. double-click it.
+1. add your tasks.
+1. let it manage your tasks for you 😉
+
 And it is FREE!
 
 Features:
 
- Managing tasks
- Managing deadlines (coming soon)
- Reminders (coming soon)
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+[x] Managing tasks
+[ ]Managing deadlines (coming soon)
+[ ] Reminders (coming soon)
 
-## Setting up in Intellij
+
+###
 
 Prerequisites: JDK 17, update Intellij to the most recent version.
 
