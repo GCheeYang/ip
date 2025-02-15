@@ -1,13 +1,18 @@
+import Tom.tasks.*;
 import java.util.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Tom {
-    private static List<Task> tasks = new ArrayList<>();
+    Path filePath = Paths.get("data", "tom.txt");
+    private static List<Task> tasks;
     private static String line = "\n_________________________________________________\n";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         System.out.println(line + "Hello! I'm Tom\n" + "What Can I do for you?" + line);
+        Data.ensureFileExists();
+        tasks = Data.loadTasks();
 
         while(true) {
             String input = scanner.nextLine(); //takes in user input
@@ -16,6 +21,7 @@ public class Tom {
             //general commands
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!\n" + line);
+                Data.saveTasks(tasks);
                 break;
             } else if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
@@ -34,11 +40,11 @@ public class Tom {
                 tasks.get(item).toggle();
                 System.out.println("Nice! I've marked this task as done:\n" + tasks.get(item).toString());
                 //inputting new tasks
-            } else if (input.startsWith("todo")) {
+            } else if (input.startsWith("T")) {
                 addToDo(input);
-            } else if (input.startsWith("deadline")) {
+            } else if (input.startsWith("D")) {
                 addDeadline(input);
-            } else if (input.startsWith("event")) {
+            } else if (input.startsWith("E")) {
                 addEvent(input);
             } else if (input.startsWith("delete")) {
                 deleteTask(input);
@@ -53,8 +59,7 @@ public class Tom {
 
     private static void addToDo(String input) {
         try {
-            String description = input.substring(5);
-            Task task = new ToDo(description);
+            Task task = Task.parseTask(input);
             tasks.add(task);
             printTask(task);
         } catch (StringIndexOutOfBoundsException e) {
@@ -64,28 +69,22 @@ public class Tom {
 
     private static void addDeadline(String input) {
         try {
-            String[] parts = input.substring(9).split("/by");
-            String description = parts[0];
-            String deadline = parts[1];
-            Task task = new Deadlines(description, deadline);
+
+            Task task = Task.parseTask(input);
             tasks.add(task);
             printTask(task);
         } catch (Exception e) {
-            System.out.println("Sorry, the deadline format is invalid. Use deadline <desc> /by <time>");
+            System.out.println("Sorry, the deadline format is invalid. Use D | <status> | <desc> | <time>");
         }
     }
 
     private static void addEvent(String input) {
         try {
-            String[] parts = input.substring(6).split("/from|/to");
-            String description = parts[0];
-            String from = parts[1];
-            String to = parts[2];
-            Task task = new Events(description, from, to);
+            Task task = Task.parseTask(input);
             tasks.add(task);
             printTask(task);
         } catch (Exception e) {
-            System.out.println("Sorry, the event format is invalid. Use event <desc> /from <start> /to <end>");
+            System.out.println("Sorry, the event format is invalid. Use E | <status> | <desc> | <From time> | <To time> ");
         }
     }
 
