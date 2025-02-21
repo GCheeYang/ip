@@ -2,8 +2,8 @@ import Tom.tasks.*;
 import java.util.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-//c
-public class Tom {
+
+public class Tom{
     Path filePath = Paths.get("data", "tom.txt");
     private static List<Task> tasks;
     private static String line = "\n_________________________________________________\n";
@@ -107,5 +107,10 @@ public class Tom {
         }
     }
 
-
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Tom heard: " + input;
+    }
 }
