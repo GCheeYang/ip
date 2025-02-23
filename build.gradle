@@ -43,12 +43,13 @@ test {
 }
 
 application {
-    mainClass.set("Launcher")
+    mainClass.set("Tom.gui.Main")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "Tom"
     archiveClassifier = null
+    archiveFileName = 'Tom.jar'
 }
 
 run{
