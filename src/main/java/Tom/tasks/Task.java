@@ -7,12 +7,20 @@ import java.time.format.DateTimeFormatter;
 public class Task {
     private String description;
     private boolean status;
+    private TaskType taskType;
+
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-
-    public Task(String description, boolean status) {
+    public Task(String description, TaskType taskType) {
         this.description = description;
         this.status = false;
+        this.taskType = taskType;
+    }
+
+    public Task(String description, TaskType taskType, boolean status) {
+        this.description = description;
+        this.status = false;
+        this.taskType = taskType;
     }
 
     public String getStatus() {
@@ -22,6 +30,7 @@ public class Task {
     public void toggle() {
         this.status = !status;
     }
+
 
     public static Task parseTask(String line) {
         String[] parts = line.split("\\| ");
@@ -67,7 +76,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.description;
+        return "[" + getStatus() + "] " + this.description;
     }
 
 }
