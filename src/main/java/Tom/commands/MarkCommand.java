@@ -22,9 +22,9 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks) throws TomException {
-        Task task = tasks.markTask(taskIndex, isMarkingDone);
-        Storage.saveTasks(tasks.getTaskList());
+    public String execute(TaskList taskList) throws TomException {
+        Task task = taskList.markTask(taskIndex, isMarkingDone);
+        Storage.saveTasks(taskList.getTaskList());
 
         return isMarkingDone
                 ? "Well done, this task is completed!\n   " + task

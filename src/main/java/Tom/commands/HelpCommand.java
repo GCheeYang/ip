@@ -15,6 +15,7 @@ public class HelpCommand extends Command {
                 + " 6. unmark <task number> - Marks a task as not done.\n"
                 + " 7. delete <task number> - Removes a task.\n"
                 + " 8. help - Displays this help message.\n"
-                + " 9. find <keyword> - Finds all tasks containing <keyword>.\n";
+                + " 9. find <keyword> - Finds all tasks containing <keyword>.\n"
+                + "10. undo - undos previous command. \n";
     }
 }
