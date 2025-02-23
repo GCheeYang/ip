@@ -1,30 +1,17 @@
-# Duke User Guide
+# Tom
 
-// Update the title above to match the actual product name
+> Hello! I am Tom!
 
-// Product screenshot goes here
+Tom is a to do list bot to help you remember what you need to do!
 
-// Product intro goes here
+## Features:
 
-## Adding deadlines
-
-// Describe the action and its outcome.
-
-// Give examples of usage
-
-Example: `keyword (optional arguments)`
-
-// A description of the expected outcome goes here
-
-```
-expected output
-```
-
-## Feature ABC
-
-// Feature details
-
-
-## Feature XYZ
-
-// Feature details
+1. list - Shows all tasks.
+2. todo `<description>` - Adds a new todo task.
+3. deadline `<description>` /by `<yyyy-MM-dd>` - Adds a deadline task.
+4. event `<description>` /from `<yyyy-MM-dd>` /to `<yyyy-MM-dd>` - Adds an event.
+5. mark `<task number>` - Marks a task as completed.
+6. unmark `<task number>` - Marks a task as not done.
+7. delete `<task number>` - Removes a task.
+8. help - Displays this help message.
+9. find `<keyword>` - Finds all tasks containing `<keyword>`.

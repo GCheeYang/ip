@@ -45,7 +45,7 @@ public class Main extends Application {
     private void setupStage(Stage stage, AnchorPane root) {
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Joni");
+        stage.setTitle("Tom");
         stage.show();
     }
 
