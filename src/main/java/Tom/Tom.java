@@ -7,6 +7,7 @@ import Tom.tasks.TaskList;
 public class Tom {
     private TaskList tasks;
     private Storage storage;
+    private int testInt;
 
     public Tom() {
         storage = new Storage();
