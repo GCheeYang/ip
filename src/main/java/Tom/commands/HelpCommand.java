@@ -3,7 +3,7 @@ package Tom.commands;
 import Tom.tasks.TaskList;
 
 public class HelpCommand extends Command {
-
+//help extension
     @Override
     public String execute(TaskList tasks) {
         return "Here are the commands available:\n"
