@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This is an abstract class that serves as the base for specific task types like Todo, Deadline, and Event.
+ */
 public class Task {
     private String description;
     private boolean status;
@@ -11,27 +14,52 @@ public class Task {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /**
+     * Constructs a Task with a description and task type.
+     *
+     * @param description The description of the task.
+     * @param taskType The type of task (TODO, DEADLINE, or EVENT).
+     */
     public Task(String description, TaskType taskType) {
         this.description = description;
         this.status = false;
         this.taskType = taskType;
     }
 
+    /**
+     * Constructs a Task with a description, task type, and completion status.
+     *
+     * @param description The description of the task.
+     * @param taskType The type of task (TODO, DEADLINE, or EVENT).
+     * @param status If the task is completed or not
+     */
     public Task(String description, TaskType taskType, boolean status) {
         this.description = description;
         this.status = false;
         this.taskType = taskType;
     }
 
+    /**
+     * Returns the status icon of the task.
+     *
+     * @return "X" if the task is completed, otherwise a space " ".
+     */
     public String getStatus() {
         return (status ? "X" : " ");
     }
 
+    /**
+     * Marks the task as done or undone.
+     */
     public void toggle() {
         this.status = !status;
     }
 
-
+    /**
+     *
+     * @param line The input that will be converted to a task
+     * @return A newly created task with details such as description, deadline and status
+     */
     public static Task parseTask(String line) {
         String[] parts = line.split("\\| ");
 
@@ -73,7 +101,11 @@ public class Task {
         }
     }
 
-
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return The formatted string representation of the task.
+     */
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + this.description;
