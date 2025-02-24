@@ -9,15 +9,30 @@ import Tom.tasks.Task;
 import Tom.tasks.TaskList;
 import Tom.tasks.TaskType;
 
+/**
+ * Represents a user add command to add a task list.
+ */
 public class AddCommand extends Command{
     private String[] input;
     private TaskType type;
 
+    /**
+     * Constructs an AddCommand with the given input parts and task type.
+     *
+     * @param input The array of input strings containing task details.
+     * @param taskType The type of task to be added.
+     */
     public AddCommand(String[] input, TaskType taskType) {
         this.input = input;
         this.type = taskType;
     }
-
+    /**
+     * Executes the add task command.
+     *
+     * @param taskList The TaskList instance to add the task to.
+     * @return The string representation of the command's response.
+     * @throws TomException If there is an error in task creation.
+     */
     @Override
     public String execute(TaskList taskList) throws TomException {
         if (input.length < 2 || input[1].isEmpty()) {
@@ -44,6 +59,13 @@ public class AddCommand extends Command{
         return "Task added: \n " + task;
     }
 
+    /**
+     * Parses a deadline task from user input.
+     *
+     * @param input The user input string.
+     * @return A Deadline task.
+     * @throws TomException If the format is incorrect.
+     */
     private Task parseDeadline(String input) throws TomException {
         String[] deadlineParts = input.split(" /by ", 2);
         if (deadlineParts.length < 2) {
@@ -55,6 +77,13 @@ public class AddCommand extends Command{
         return new Deadlines(deadlineParts[0].trim(), false, deadlineStr);
     }
 
+    /**
+     * Parses an event task from user input.
+     *
+     * @param input The user input string.
+     * @return An Event task.
+     * @throws TomException If the format is incorrect.
+     */
     private Task parseEvent(String input) throws TomException {
         String[] eventParts = input.split(" /from | /to ", 3);
         if (eventParts.length < 3) {
@@ -68,6 +97,12 @@ public class AddCommand extends Command{
         return new Events(eventParts[0].trim(), false, fromStr, toStr);
     }
 
+    /**
+     * Normalizes date format if users do not add a 0 in front of the month or day.
+     *
+     * @param dateStr The user input date string.
+     * @return a normalized date string.
+     */
     private String normalizeDateFormat(String dateStr) {
         String[] parts = dateStr.split(" ");
         String[] dateParts = parts[0].split("-");

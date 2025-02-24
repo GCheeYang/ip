@@ -5,22 +5,38 @@ import Tom.Storage;
 import Tom.tasks.Task;
 import Tom.tasks.TaskList;
 
+/**
+ * Handles marking/unmarking tasks.
+ */
 public class MarkCommand extends Command {
     private int taskIndex;
     private boolean isMarkingDone;
 
-    public MarkCommand(String[] inputParts, boolean isMarkingDone) throws TomException {
-        if (inputParts.length < 2) {
+    /**
+     * Constructs a MarkCommand with the given input and task type.
+     *
+     * @param input The array of input strings containing task details.
+     * @param isMarkingDone Whether marking is done or not
+     */
+    public MarkCommand(String[] input, boolean isMarkingDone) throws TomException {
+        if (input.length < 2) {
             throw new TomException("Invalid command! Use 'mark <task number>' or 'unmark <task number>'.");
         }
         try {
-            this.taskIndex = Integer.parseInt(inputParts[1]) - 1;
+            this.taskIndex = Integer.parseInt(input[1]) - 1;
         } catch (NumberFormatException e) {
             throw new TomException("Invalid task number! Use a valid number.");
         }
         this.isMarkingDone = isMarkingDone;
     }
 
+    /**
+     * Executes the mark or unmark task command.
+     *
+     * @param taskList The TaskList instance.
+     * @return The string representation of the command's response.
+     * @throws TomException If the task index is invalid.
+     */
     @Override
     public String execute(TaskList taskList) throws TomException {
         Task task = taskList.markTask(taskIndex, isMarkingDone);

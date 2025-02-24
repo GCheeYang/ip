@@ -3,8 +3,18 @@ package Tom.commands;
 import Tom.TomException;
 import Tom.tasks.TaskType;
 //BCD-Extension
+/**
+ * Parses user input into Commands.
+ */
 public class Parser {
 
+    /**
+     * Parses user input and returns the corresponding command.
+     *
+     * @param userInput The input entered by the user.
+     * @return A Command object representing the user's request.
+     * @throws TomException If the input command is not recognized.
+     */
     public static Command parse(String userInput) throws TomException {
         String[] input = userInput.split(" ", 2);
         CommandType command = CommandType.fromString(input[0]);

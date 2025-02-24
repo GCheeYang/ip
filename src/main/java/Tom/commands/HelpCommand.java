@@ -2,8 +2,17 @@ package Tom.commands;
 
 import Tom.tasks.TaskList;
 
+/**
+ * Displays available commands.
+ */
 public class HelpCommand extends Command {
 //help extension
+    /**
+     * Displays a list of available commands.
+     *
+     * @param tasks The TaskList instance.
+     * @return The string representation of the command's response.
+     */
     @Override
     public String execute(TaskList tasks) {
         return "Here are the commands available:\n"
