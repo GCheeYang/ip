@@ -28,6 +28,8 @@ public class Parser {
                 return new HelpCommand();
             case FIND:
                 return new FindCommand(input);
+            case BYE:
+                return new ByeCommand();
             default:
                 throw new TomException("Oops! I don't understand that command.");
         }

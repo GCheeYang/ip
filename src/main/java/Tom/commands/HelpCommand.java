@@ -16,6 +16,8 @@ public class HelpCommand extends Command {
                 + " 7. delete <task number> - Removes a task.\n"
                 + " 8. help - Displays this help message.\n"
                 + " 9. find <keyword> - Finds all tasks containing <keyword>.\n"
-                + "10. undo - undos previous command. \n";
+                + "10. undo - undos previous command. \n"
+                + "11. bye - exit the application. \n";
+
     }
 }

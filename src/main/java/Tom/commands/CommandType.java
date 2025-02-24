@@ -1,7 +1,7 @@
 package Tom.commands;
 
 public enum CommandType {
-    TODO,DEADLINE,EVENT,LIST,MARK,UNMARK,DELETE,HELP,FIND,UNKNOWN;
+    TODO,DEADLINE,EVENT,LIST,MARK,UNMARK,DELETE,HELP,FIND,UNKNOWN,BYE;
 
     public static CommandType fromString(String command) {
         switch (command.toLowerCase()) {
@@ -14,6 +14,7 @@ public enum CommandType {
             case "delete" : return DELETE;
             case "help" : return HELP;
             case "find" : return FIND;
+            case "bye" : return BYE;
             default: return UNKNOWN;
         }
     }
