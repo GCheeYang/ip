@@ -51,7 +51,7 @@ test {
 }
 
 application {
-    mainClass.set("Tom.gui.Launcher")
+    mainClass.set("Tom.Launcher")
 }
 
 shadowJar {
