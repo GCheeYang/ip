@@ -51,14 +51,13 @@ test {
 }
 
 application {
-    mainClass.set("Tom.gui.Main")
+    mainClass.set("Tom.gui.Launcher")
 }
 
 shadowJar {
     archiveBaseName = "Tom"
-    archiveClassifier.set('')
+    archiveClassifier = null
     archiveFileName = 'Tom.jar'
-    mergeServiceFiles()
 }
 
 run{
