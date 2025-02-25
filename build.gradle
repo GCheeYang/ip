@@ -54,10 +54,13 @@ application {
 
 shadowJar {
     archiveBaseName = "Tom"
-    archiveClassifier = null
+    archiveClassifier.set('')
     archiveFileName = 'Tom.jar'
+    mergeServiceFiles()
 }
 
 run{
     standardInput = System.in
 }
+
+
