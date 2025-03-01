@@ -21,10 +21,7 @@ public class MarkCommand extends Command {
     public MarkCommand(String[] input, boolean isMarkingDone) throws TomException {
         if (input.length < 2) {
             throw new TomException("Invalid command! Use 'mark <task number>' or 'unmark <task number>'.");
-        }
-        try {
-            this.taskIndex = Integer.parseInt(input[1]) - 1;
-        } catch (NumberFormatException e) {
+        } else if (this.taskIndex != Integer.parseInt(input[1]) - 1) {
             throw new TomException("Invalid task number! Use a valid number.");
         }
         this.isMarkingDone = isMarkingDone;

@@ -20,8 +20,9 @@ public class DeleteCommand extends Command {
     public DeleteCommand(String[] input) throws TomException {
         if (input.length < 2) {
             throw new TomException("Invalid command! Use 'delete <task number>'.");
+        } else if (this.taskIndex != Integer.parseInt(input[1]) - 1) {
+            throw new TomException("Invalid task number! Use a valid number.");
         }
-        this.taskIndex = Integer.parseInt(input[1]) - 1;
     }
 
     /**
