@@ -12,7 +12,7 @@ public class Task {
     private boolean status;
     private TaskType taskType;
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * Constructs a Task with a description and task type.
@@ -56,41 +56,52 @@ public class Task {
     }
 
     /**
+     * Takes in a task from storage and changes it into a task
      *
      * @param line The input that will be converted to a task
      * @return A newly created task with details such as description, deadline and status
      */
-    public static Task parseTask(String line) {
-        String[] parts = line.split("\\| ");
 
-        if (parts.length < 3) { // Ensuring that at least type, status, and description exist
+    public static Task parseTask(String line) {
+        String[] parts = line.split("\\[|\\]"); // Splits using "[" or "]"
+
+        if (parts.length < 5) { // Ensuring that at least type, status, and description exist
             System.out.println("Invalid task format: " + line);
             return null;
         }
 
-        String type = parts[0];
-        boolean isDone = parts[1].equals("1 ");
-        String description = parts[2];
+        String type = parts[1];
+        boolean isDone = parts[3].equals("X");
+        String description = parts[4];
 
         try {
-            if (type.equals("T ")) {
+            if (type.equals("T")) {
                 return new ToDo(description, isDone);
-            } else if (type.equals("D ")) {
-                if (parts.length < 4) {
+            } else if (type.equals("D")) {
+                if (!description.contains("(by: ")) {
                     System.out.println("Invalid deadline format: " + line);
-                    return null;
                 }
-                LocalDateTime deadlineDate = LocalDateTime.parse(parts[3], DATE_FORMATTER);
-                return new Deadlines(description, isDone, deadlineDate);
-            } else if (type.equals("E ")) {
-                if (parts.length < 5) {
+                String[] descParts = description.split("\\(by: ");
+                String desc = descParts[0];
+                String deadlineStr = descParts[1].replace(")", "");
+
+                String newDeadlineStr = convertDate(deadlineStr);
+                return new Deadlines(desc, isDone, newDeadlineStr);
+
+            } else if (type.equals("E")) {
+                if (!description.contains("(From:") || !description.contains("To:")) {
                     System.out.println("Invalid event format: " + line);
                     return null;
                 }
-                LocalDateTime eventFrom = LocalDateTime.parse(parts[3].substring(0, parts[3].length() - 1), DATE_FORMATTER);
-                LocalDateTime eventTo = LocalDateTime.parse(parts[4], DATE_FORMATTER);
 
-                return new Events(description, isDone, eventFrom, eventTo);
+                String[] descParts = description.split("\\(From: | To: ");
+                String desc = descParts[0];
+                String eventFromStr = descParts[1];
+                String eventToStr = descParts[2].replace(")", "");
+                String newEventFromStr = convertDate(eventFromStr);
+                String newEventToStr = convertDate(eventToStr);
+
+                return new Events(desc, isDone, newEventFromStr, newEventToStr);
             } else {
                 System.out.println("Unknown task type: " + line);
                 return null;
@@ -98,6 +109,25 @@ public class Task {
         } catch (Exception e) {
             System.out.println("Error parsing task: " + line);
             return null;
+        }
+    }
+
+    public static String convertDate(String dateStr) {
+        try {
+            // Input format: "MMM dd yyyy" (e.g., "Dec 12 2022")
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
+            // Output format: "yyyy-MM-dd" (e.g., "2022-12-12")
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            // Parse the date
+            LocalDate date = LocalDate.parse(dateStr, inputFormatter);
+
+            // Convert to desired format
+            return date.format(outputFormatter);
+        } catch (Exception e) {
+            System.out.println("Error: Invalid date format - " + dateStr);
+            return null; // Return null if the format is incorrect
         }
     }
 
