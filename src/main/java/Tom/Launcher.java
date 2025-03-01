@@ -1,5 +1,5 @@
 package Tom;
-
+//final
 import javafx.application.Application;
 import Tom.gui.Main;
 
