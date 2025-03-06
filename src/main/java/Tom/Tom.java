@@ -3,12 +3,8 @@ package Tom;
 import Tom.commands.Command;
 import Tom.commands.Parser;
 import Tom.tasks.TaskList;
-//tom git commit 1
-//git commit 2
-//git commit 3
-//git commit 4
-//git commit 5
-//git commit 6
+//commit 1
+
 
 public class Tom {
     private TaskList tasks;
