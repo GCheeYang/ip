@@ -1,6 +1,6 @@
 package Tom;
 //final
-/git commit 1
+/git commit first
 import javafx.application.Application;
 import Tom.gui.Main;
 
