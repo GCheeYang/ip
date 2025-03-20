@@ -62,6 +62,11 @@ public class Task {
         this.status = false;
     }
 
+    /**
+     * Marks the task as done or undone.
+     */
+    public TaskType getTaskType() { return this.taskType;  }
+
 
     /**
      * Takes in a task from storage and changes it into a task

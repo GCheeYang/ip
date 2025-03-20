@@ -1,8 +1,8 @@
-package Tom.tasks;  //same package as the class being tested
-
-import org.junit.jupiter.api.Test;
+package Tom.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
 
 public class ToDoTest {
     @Test
