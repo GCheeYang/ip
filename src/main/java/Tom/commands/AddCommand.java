@@ -56,7 +56,7 @@ public class AddCommand extends Command{
 
         taskList.addTask(task);
         Storage.saveTasks(taskList.getTaskList());
-        return "Task added: \n " + task;
+        return "Task added: \n " + task + "\n There are now " + taskList.getTaskListSize() + " tasks in the list." ;
     }
 
     /**

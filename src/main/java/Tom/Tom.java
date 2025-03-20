@@ -27,4 +27,9 @@ public class Tom {
             return e.getMessage();
         }
     }
+
+    public static String getWelcomeMessage() {
+        return "Hello! My name is Tom\n"
+                + "Type \"help\" for a list of commands.";
+    }
 }

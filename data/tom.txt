@@ -1,6 +1,3 @@
-[T][ ]   tuff
-[T][ ]   abu
-[T][ ]   done
-[T][ ]  123
-[D][ ] task 2 (by: Dec 12 2022)
-[E][ ] task 3 (From: Dec 12 2022 To: Dec 12 2022)
+[T][ ] Finish homework
+[D][ ] project (by: May 12 2024)
+[E][ ] meeting (From: Jun 12 2025 To: Jun 13 2025)

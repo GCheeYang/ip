@@ -1,7 +1,10 @@
 package Tom.tasks;
 
+import Tom.TomException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a task with a deadline
@@ -18,9 +21,14 @@ public class Deadlines extends Task{
      * @param status If the task is completed or not
      * @param deadlineStr The deadline date in "yyyy-MM-dd" format.
      */
-    public Deadlines (String description, boolean status, String deadlineStr){
+    public Deadlines (String description, boolean status, String deadlineStr) throws TomException{
         super(description, TaskType.DEADLINE, status);
-        this.deadline = LocalDateTime.parse(deadlineStr + " 00:00", INPUT_FORMATTER);
+        try {
+            this.deadline = LocalDateTime.parse(deadlineStr + " 00:00", INPUT_FORMATTER);
+        } catch (DateTimeParseException e){
+            throw new TomException("Invalid date format! Use 'yyyy-MM-dd' (e.g., 2025-02-15).");
+        }
+
     }
 
     /**
@@ -34,6 +42,8 @@ public class Deadlines extends Task{
         super(description, TaskType.DEADLINE, status);
         this.deadline = deadline;
     }
+
+
 
     /**
      * Returns a formatted string representation of the deadline task.

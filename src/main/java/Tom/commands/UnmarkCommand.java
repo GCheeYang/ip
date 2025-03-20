@@ -6,9 +6,9 @@ import Tom.tasks.Task;
 import Tom.tasks.TaskList;
 
 /**
- * Handles marking tasks.
+ * Handles unmarking tasks.
  */
-public class MarkCommand extends Command {
+public class UnmarkCommand extends Command {
     private int taskIndex;
     private boolean isMarkingDone;
 
@@ -18,15 +18,15 @@ public class MarkCommand extends Command {
      * @param input The array of input strings containing task details.
      * @param isMarkingDone Whether marking is done or not
      */
-    public MarkCommand(String[] input, boolean isMarkingDone) throws TomException {
+    public UnmarkCommand(String[] input, boolean isMarkingDone) throws TomException {
         try {
             int number = Integer.parseInt(input[1]);
             taskIndex = number - 1;
         } catch (NumberFormatException e) {
-            System.out.println("Invalid command! Use 'mark <task number>'.");
+            System.out.println("Invalid command! Use 'unmark <task number>'.");
         }
         if (input.length < 2) {
-            throw new TomException("Invalid command! Use 'mark <task number>'.");
+            throw new TomException("Invalid command! Use 'unmark <task number>'.");
         }
         this.isMarkingDone = isMarkingDone;
     }
@@ -43,9 +43,9 @@ public class MarkCommand extends Command {
         if (taskIndex > taskList.getTaskListSize() || taskIndex < 0) {
             throw new TomException("Invalid task number! Use a valid number.");
         }
-        Task task = taskList.markTask(taskIndex, isMarkingDone);
+        Task task = taskList.unmarkTask(taskIndex, isMarkingDone);
         Storage.saveTasks(taskList.getTaskList());
 
-        return "Well done, this task is completed!\n   " + task;
+        return "Lets's work on this task! It is not done yet:\n   " + task;
     }
 }

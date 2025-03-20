@@ -23,8 +23,8 @@ public class HelpCommand extends Command {
                 + " 5. mark <task number> - Marks a task as completed.\n"
                 + " 6. unmark <task number> - Marks a task as not done.\n"
                 + " 7. delete <task number> - Removes a task.\n"
-                + " 8. help - Displays this help message.\n"
-                + " 9. find <keyword> - Finds all tasks containing <keyword>.\n"
+                + " 8. find <keyword> - Finds all tasks containing <keyword>.\n"
+                + " 9. help - Displays this help message.\n"
                 + "10. bye - exit the application. \n";
 
     }

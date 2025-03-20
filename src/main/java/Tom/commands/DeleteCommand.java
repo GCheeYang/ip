@@ -18,10 +18,14 @@ public class DeleteCommand extends Command {
      * @param input The array of input strings containing task details.
      */
     public DeleteCommand(String[] input) throws TomException {
+        try {
+            int number = Integer.parseInt(input[1]);
+            taskIndex = number - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid command! Use 'delete <task number>'.");
+        }
         if (input.length < 2) {
             throw new TomException("Invalid command! Use 'delete <task number>'.");
-        } else if (this.taskIndex != Integer.parseInt(input[1]) - 1) {
-            throw new TomException("Invalid task number! Use a valid number.");
         }
     }
 
@@ -34,6 +38,9 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks) throws TomException {
+        if (taskIndex > tasks.getTaskListSize() || taskIndex < 0) {
+            throw new TomException("Invalid task number! Use a valid number.");
+        }
         Task removedTask = tasks.removeTask(taskIndex);
         Storage.saveTasks(tasks.getTaskList());
 

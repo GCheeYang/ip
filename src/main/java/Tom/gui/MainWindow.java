@@ -51,4 +51,13 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
+
+    /**
+     * Displays Joni's welcome message in the dialog container.
+     */
+    public void showWelcome() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(Tom.getWelcomeMessage(), dukeImage)
+        );
+    }
 }

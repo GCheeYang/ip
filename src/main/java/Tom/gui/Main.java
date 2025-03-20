@@ -53,6 +53,7 @@ public class Main extends Application {
     private void initializeController(FXMLLoader fxmlLoader) {
         MainWindow controller = fxmlLoader.getController();
         controller.setDuke(tom);
+        controller.showWelcome();
     }
 
     private void handleException(Exception e) {

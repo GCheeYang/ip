@@ -33,7 +33,7 @@ public class Parser {
             case MARK:
                 return new MarkCommand(input, true);
             case UNMARK:
-                return new MarkCommand(input, false);
+                return new UnmarkCommand(input, false);
             case HELP:
                 return new HelpCommand();
             case FIND:

@@ -59,7 +59,23 @@ public class TaskList {
             System.out.println("Invalid task number");
         }
         Task task = taskList.get(index);
-        task.toggle();
+        task.markTask();
+        return task;
+    }
+
+    /**
+     * Marks or unmarks a task in the task list.
+     *
+     * @param index The index of the task to mark or unmark.
+     * @param newStatus True to mark as done, false to mark as not done.
+     * @return The updated Task object.
+     */
+    public Task unmarkTask(int index, boolean newStatus) {
+        if (index < 0 || index >= taskList.size()) {
+            System.out.println("Invalid task number");
+        }
+        Task task = taskList.get(index);
+        task.unmarkTask();
         return task;
     }
 
@@ -86,5 +102,12 @@ public class TaskList {
     public ArrayList<Task> getTaskList() {
         return taskList;
     }
+
+    /**
+     * Returns the number of tasks.
+     *
+     * @return The number of Tasks.
+     */
+    public int getTaskListSize() { return taskList.size(); }
 
 }

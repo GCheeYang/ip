@@ -51,9 +51,17 @@ public class Task {
     /**
      * Marks the task as done or undone.
      */
-    public void toggle() {
-        this.status = !status;
+    public void markTask() {
+        this.status = true;
     }
+
+    /**
+     * Marks the task as done or undone.
+     */
+    public void unmarkTask() {
+        this.status = false;
+    }
+
 
     /**
      * Takes in a task from storage and changes it into a task

@@ -1,7 +1,10 @@
 package Tom.tasks;
 
+import Tom.TomException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an event with a start and end date
@@ -20,10 +23,14 @@ public class Events extends Task{
      * @param fromStr The start date in "yyyy-MM-dd" format.
      * @param toStr The end date in "yyyy-MM-dd" format.
      */
-    public Events(String description, boolean status, String fromStr, String toStr) {
+    public Events(String description, boolean status, String fromStr, String toStr) throws TomException {
         super(description, TaskType.EVENT, status);
-        this.from = LocalDateTime.parse(fromStr + " 00:00", INPUT_FORMATTER);
-        this.to = LocalDateTime.parse(toStr + " 00:00", INPUT_FORMATTER);
+        try {
+            this.from = LocalDateTime.parse(fromStr + " 00:00", INPUT_FORMATTER);
+            this.to = LocalDateTime.parse(toStr + " 00:00", INPUT_FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new TomException("Invalid date format! Use 'yyyy-MM-dd' (e.g., 2025-02-15).");
+        }
     }
 
     /**
