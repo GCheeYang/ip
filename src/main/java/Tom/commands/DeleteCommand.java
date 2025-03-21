@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
             int number = Integer.parseInt(input[1]);
             taskIndex = number - 1;
         } catch (NumberFormatException e) {
-            System.out.println("Invalid command! Use 'delete <task number>'.");
+            throw new TomException("Invalid command! Use 'delete <task number>'.");
         }
         if (input.length < 2) {
             throw new TomException("Invalid command! Use 'delete <task number>'.");
@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks) throws TomException {
-        if (taskIndex > tasks.getTaskListSize() || taskIndex < 0) {
+        if (taskIndex >= tasks.getTaskListSize() || taskIndex < 0) {
             throw new TomException("Invalid task number! Use a valid number.");
         }
         Task removedTask = tasks.removeTask(taskIndex);

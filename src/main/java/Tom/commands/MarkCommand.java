@@ -23,11 +23,12 @@ public class MarkCommand extends Command {
             int number = Integer.parseInt(input[1]);
             taskIndex = number - 1;
         } catch (NumberFormatException e) {
-            System.out.println("Invalid command! Use 'mark <task number>'.");
+            throw new TomException("Invalid command! Use 'mark <task number>'.");
         }
         if (input.length < 2) {
             throw new TomException("Invalid command! Use 'mark <task number>'.");
         }
+
         this.isMarkingDone = isMarkingDone;
     }
 
@@ -40,7 +41,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList) throws TomException {
-        if (taskIndex > taskList.getTaskListSize() || taskIndex < 0) {
+        if (taskIndex >= taskList.getTaskListSize() || taskIndex < 0) {
             throw new TomException("Invalid task number! Use a valid number.");
         }
         Task task = taskList.markTask(taskIndex, isMarkingDone);
