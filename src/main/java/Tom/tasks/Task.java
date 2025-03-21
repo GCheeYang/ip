@@ -40,12 +40,28 @@ public class Task {
     }
 
     /**
-     * Returns the status icon of the task.
+     * Returns the status of the task.
      *
      * @return "X" if the task is completed, otherwise a space " ".
      */
     public String getStatus() {
         return (status ? "X" : " ");
+    }
+
+    /**
+     * Returns the String representation of status of the task.
+     *
+     * @return true if the task is completed, otherwise false.
+     */
+    public boolean getStringStatus() { return this.status; }
+
+    /**
+     * Returns the description of the task.
+     *
+     * @return String representation of description.
+     */
+    public String getDescription() {
+        return this.description;
     }
 
     /**
